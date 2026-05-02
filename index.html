@@ -5,111 +5,391 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rojo: #C0001A;
+      --rojo-oscuro: #8B0012;
+      --rojo-claro: #E8001F;
+      --blanco: #FFFFFF;
+      --gris-claro: #F7F7F7;
+      --gris-texto: #444;
+      --verde: #2E7D32;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      color: #333;
+      font-family: 'Lato', sans-serif;
+      background: var(--gris-claro);
+      color: var(--gris-texto);
     }
+
+    /* ── CABECERA ── */
     header {
+      background: linear-gradient(135deg, var(--rojo-oscuro) 0%, var(--rojo) 50%, var(--rojo-claro) 100%);
+      color: var(--blanco);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 40px;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
-      margin-bottom: 30px;
+      gap: 8px;
     }
-    header img {
-      max-width: 200px;
+
+    .header-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      opacity: 0.75;
     }
-    .social-links a {
-      margin: 0 8px;
-      font-size: 24px;
-      color: #333;
-      text-decoration: none;
+
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1px;
     }
-    ul {
+
+    .header-subtitle {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      letter-spacing: 2px;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    .header-divider {
+      width: 60px;
+      height: 2px;
+      background: rgba(255,255,255,0.4);
+      margin: 16px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ── CONTENIDO ── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 48px;
+    }
+
+    /* ── VIDEO ── */
+    .video-section {
+      background: var(--blanco);
+      border-radius: 0 0 16px 16px;
+      padding: 36px 24px 40px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      margin-bottom: 36px;
+    }
+
+    .video-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rojo);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .video-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 24px;
+    }
+
+    .video-wrapper {
+      display: inline-block;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(192,0,26,0.18);
+    }
+
+    .video-wrapper iframe {
+      display: block;
+    }
+
+    /* ── POLÍTICA ── */
+    .policy-card {
+      background: var(--blanco);
+      border-radius: 16px;
+      padding: 40px 36px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+
+    .policy-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--rojo);
+      border-bottom: 2px solid var(--rojo);
+      padding-bottom: 12px;
+      margin-bottom: 28px;
+      letter-spacing: 1px;
+    }
+
+    .policy-item {
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .policy-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .policy-item h3 {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--rojo-oscuro);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .policy-number {
+      background: var(--rojo);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .policy-item p, .policy-item li {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--gris-texto);
+    }
+
+    .policy-item ul {
       list-style: none;
       padding: 0;
+      margin-top: 8px;
     }
+
+    .policy-item ul li {
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+
+    .policy-item ul li::before {
+      content: '▪';
+      position: absolute;
+      left: 0;
+      color: var(--rojo);
+    }
+
+    .highlight-green {
+      background: #E8F5E9;
+      border-left: 4px solid var(--verde);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      color: #1B5E20;
+      font-size: 0.93rem;
+      line-height: 1.7;
+      margin-top: 8px;
+    }
+
+    .tag-green { color: var(--verde); font-weight: 700; }
+
+    /* ── CONTACTO ── */
+    .contact-box {
+      margin-top: 28px;
+      background: var(--gris-claro);
+      border-radius: 10px;
+      padding: 18px 20px;
+      font-size: 0.93rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .contact-box a {
+      color: var(--verde);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .contact-box a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
     footer {
+      background: var(--rojo-oscuro);
+      color: rgba(255,255,255,0.75);
       text-align: center;
-      color: #999;
-      border-top: 1px solid #ddd;
-      margin-top: 40px;
-      padding-top: 16px;
-      font-size: 14px;
+      padding: 28px 24px;
+      margin-top: 48px;
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 14px;
+    }
+
+    .footer-social a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .footer-social a:hover { color: white; }
+
+    footer p {
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 600px) {
+      .policy-card { padding: 28px 20px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- CABECERA -->
   <header>
-    <h1>Instituto İstanbul</h1>
-    <h3 style="color:red">Escuela de idioma turco</h3>
-    <div class="social-links">
+    <div class="header-inner">
+      <span class="header-eyebrow">Escuela de Idioma Turco</span>
+      <h1 class="header-title">Instituto İstanbul</h1>
+      <p class="header-subtitle">Política de Pago</p>
+      <div class="header-divider"></div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- VIDEO -->
+    <div class="video-section">
+      <p class="video-label">Video Tutorial · 2 minutos</p>
+      <h2 class="video-title">¿Cómo informar tu pago mensual?</h2>
+      <div class="video-wrapper">
+        <iframe
+          width="315"
+          height="560"
+          src="https://www.youtube.com/embed/tYwzsdIG2Co"
+          title="YouTube Short - Cómo informar tu pago mensual"
+          frameborder="0"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- POLÍTICA -->
+    <div class="policy-card">
+      <h2>POLÍTICA DE PAGO</h2>
+
+      <div class="policy-item">
+        <h3><span class="policy-number">1</span> La cuota mensual</h3>
+        <p>Se abona mensualmente y por mes adelantado.</p>
+      </div>
+
+      <div class="policy-item">
+        <h3><span class="policy-number">2</span> Informar tu pago</h3>
+        <p>📝 Recibirás un informe de pago mensual por correo electrónico, <strong>el día 1 del mes</strong> (en casos excepcionales, puedes recibirlo el día 2). No debes responder a ese correo, es solo un mensaje informativo generado automáticamente.</p>
+        <br>
+        <p>🔗 El correo incluirá el monto total a pagar explicado detalladamente y un link personalizado con un botón de color verde (<span class="tag-green">ENVIAR COMPROBANTE</span>) para que puedas subir tu comprobante fácilmente, en menos de 30 segundos.</p>
+        <br>
+        <p>⏳ Es sumamente importante que notifiques tu pago <strong>desde el día 1 del mes hasta el día 10 a las 17:00 h</strong> (Zona Horaria Argentina). <strong>Se tomará como referencia la hora de la subida del comprobante al sistema, no el día y la hora de pago que figura en él.</strong></p>
+        <br>
+        <p>💳 Si la plataforma que utilizaste no te permite descargar el comprobante, puedes enviar una captura de pantalla con los datos de la transacción y el titular. <strong>El comprobante no se acepta por ningún otro medio que el enlace enviado por correo.</strong></p>
+        <br>
+        <p><strong>¿Qué debes hacer?</strong></p>
+        <ul>
+          <li>Revisa tu bandeja de entrada (y spam) el 1° de cada mes.</li>
+          <li>Haz clic en el botón verde (<span class="tag-green">ENVIAR COMPROBANTE</span>) del correo para subir el comprobante antes de la fecha límite.</li>
+        </ul>
+      </div>
+
+      <div class="policy-item">
+        <h3><span class="policy-number">3</span> Pagos fuera de plazo</h3>
+        <p><strong>Si el comprobante no se sube antes del día 10 a las 17:00 h, se considerará fuera de plazo</strong> y se aplicará un recargo del 15 % sobre el monto total. Cinco días más tarde, el día 15, el recargo será del 40 %. Se tomará como referencia <strong>la hora de subida del comprobante al sistema</strong>, no la hora de pago.</p>
+        <br>
+        <p>Si ya estás fuera del plazo, debes enviar el comprobante utilizando <strong>el último correo de informe de pago</strong> que recibiste.</p>
+      </div>
+
+      <div class="policy-item">
+        <h3><span class="policy-number">4</span> Ajustes en el precio</h3>
+        <p>En caso de algún ajuste en el precio de las clases, recibirás una notificación por correo electrónico con al menos <strong>10 días de antelación</strong>.</p>
+      </div>
+
+      <div class="highlight-green">
+        ✔ En resumen, para una gestión sin problemas, simplemente realiza el pago y envía el comprobante antes de la fecha límite. ¡Así todo estará en orden y podremos continuar juntos en el camino del aprendizaje!
+      </div>
+
+      <br>
+      <p style="text-align:center; font-size:0.95rem;">¡Agradecemos tu comprensión y colaboración!</p>
+
+      <div class="contact-box">
+        💬 Ante cualquier duda contáctanos por WhatsApp:
+        <a href="https://wa.me/5491137562295" target="_blank">+54 9 11 3756-2295</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-social">
+      <a href="https://institutoistanbul.ar/" target="_blank">Inicio</a>
       <a href="https://www.instagram.com/instituto.istanbul" target="_blank">Instagram</a>
       <a href="https://www.facebook.com/instituto.istanbul" target="_blank">Facebook</a>
       <a href="https://wa.me/5491137562295" target="_blank">WhatsApp</a>
     </div>
-  </header>
-
-  <h3><u>POLÍTICA DE PAGO</u></h3>
-
-  <ul>
-    <li>
-      <b>1. La cuota mensual</b><br>
-      Se abona mensualmente y por mes adelantado.<br><br>
-    </li>
-
-    <li>
-      <b>2. Informar tu pago</b><br>
-      📝 Recibirás un informe de pago mensual por correo electrónico, <b>el día 1 del mes</b> (En casos excepcionales, puedes recibir el día 2 del mes). No debes responder a ese correo, es solo un mensaje informativo que se genera automáticamente.<br><br>
-      🔗 El correo incluirá el monto total a pagar explicado detalladamente y un link personalizado con un botón de color verde (<span style="color:green">ENVIAR COMPROBANTE</span>) para que puedas subir tu comprobante de pago fácilmente, en menos de 30 segundos.<br><br>
-      ⏳ Es sumamente importante que notifiques tu pago <b>desde el día 1 del mes hasta el día 10 a las 17:00 h</b> (Zona Horaria Argentina). <b>Se tomará como referencia la hora de la subida del comprobante al sistema, no el día y la hora de pago que figura en él.</b><br><br>
-      💳 Si la plataforma que utilizaste para pagar no te permite descargar el comprobante, puedes enviar una captura de pantalla que incluya los datos de la transacción y el titular. <b>El comprobante de pago no se acepta por ningún otro medio que el enlace que te enviamos por correo electrónico.</b><br><br>
-
-      ¿Qué debes hacer?<br>
-      ▪ Revisa tu bandeja de entrada (y spam) el 1° de cada mes.<br>
-      ▪ Haz clic en el link que daremos en el correo con un botón de color verde (<span style="color:green">ENVIAR COMPROBANTE</span>) para subir el comprobante de pago al sistema automático antes de la fecha límite.<br><br>
-    </li>
-
-    <li>
-      <b>3. Pagos fuera de plazo</b><br>
-      <b>Si el comprobante no se sube al sistema antes del día 10 a las 17:00 h, se considerará fuera de plazo,</b> y se aplicará un recargo del 15 % sobre el valor del monto total del mes. Cinco días más tarde, el día 15, el recargo será del 40 % sobre el monto total del mes. Se tomará como referencia <b>la hora de la subida del comprobante al sistema</b>, no el día y la hora de pago que figura en él.<br>
-      Si ya estás fuera del plazo de pago, debes enviar el comprobante utilizando <b>el último correo de informe de pago</b> que recibiste.<br><br>
-    </li>
-
-    <li>
-      <b>4. Ajustes en el precio de las clases</b><br>
-      En caso de algún ajuste en el precio de las clases, recibirás una notificación por correo electrónico con al menos 10 días de antelación.<br><br>
-    </li>
-  </ul>
-
-  <p style="color:green">✔ En resumen, para una gestión sin problemas, simplemente hay que realizar el pago y enviar el comprobante antes de la fecha límite. ¡Así, todo estará en orden y podremos continuar juntos en el camino del aprendizaje!</p>
-
-  ¡Agradecemos tu comprensión y colaboración!<br><br>
-
-  Ante cualquier duda contáctanos por mensaje de WhatsApp al
-  <a href="https://wa.me/5491137562295" target="_blank" style="color:green">+54 9 11 3756-2295</a>
-
-  <br><br>
-
-  <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 30px;">
-    <p style="margin: 0 0 4px 0;">Te invitamos a ver este video tutorial de 2 minutos</p>
-    <p style="margin: 0 0 20px 0;"><strong>¿Cómo informar tu pago mensual?</strong></p>
-    <iframe
-      width="315"
-      height="560"
-      src="https://www.youtube.com/embed/tYwzsdIG2Co"
-      title="YouTube Short"
-      frameborder="0"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  <footer>
-    <p>¡Estudiemos turco! Copyright © 2007-2026 Instituto Istanbul. Todos los derechos reservados.</p>
+    <p>¡Estudiemos turco! © 2007–2026 Instituto Istanbul. Todos los derechos reservados.</p>
   </footer>
 
 </body>
